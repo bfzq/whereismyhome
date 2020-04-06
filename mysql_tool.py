@@ -6,7 +6,7 @@ from mysql.connector import errorcode
 def open_mysql_connection(host, port, user, passwd):
     try:
         cnx = mysql.connector.connect(host=host, user=user,
-                                    password=passwd, port=port)
+                                      password=passwd, port=port)
         return cnx
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -32,8 +32,19 @@ def execute(cnx, sql):
     try:
         cursor.execute(sql)
     except mysql.connector.Error as err:
-        print(err)
+        print("{}.SQL : {}".format(err, sql))
     cursor.close()
+
+def last_insert_id(cnx):
+    cursor = cnx.cursor()
+    try:
+        cursor.execute("SELECT LAST_INSERT_ID()")
+        for row in cursor:
+            return row[0]
+    except mysql.connector.Error as err:
+        print("{}.SQL : SELECT LAST_INSERT_ID()".format(err, ))
+    cursor.close()
+    return -1
 
 def query(cnx, sql):
     cursor = cnx.cursor()
@@ -43,7 +54,7 @@ def query(cnx, sql):
         for row in cursor:
             data.append(row)
     except mysql.connector.Error as err:
-        print(err)
+        print("{}.SQL : {}".format(err, sql))
     cursor.close()
     return data
 
