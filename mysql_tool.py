@@ -42,7 +42,7 @@ def last_insert_id(cnx):
         for row in cursor:
             return row[0]
     except mysql.connector.Error as err:
-        print("{}.SQL : SELECT LAST_INSERT_ID()".format(err, ))
+        print("{}.SQL : SELECT LAST_INSERT_ID()".format(err))
     cursor.close()
     return -1
 
