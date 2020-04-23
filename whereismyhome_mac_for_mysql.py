@@ -114,7 +114,8 @@ def house_num(driver, path):
 
 # set citys to look
 def citys():
-    return {"南昌":"https://nc.fang.lianjia.com/loupan/", "上海":"https://sh.fang.lianjia.com/loupan/xuhui-huangpu-changning-putuo-pudong-baoshan-hongkou-yangpu-minhang-jiading-songjiang-qingpu-fengxian-jinshan-chongming/"}
+    return {"南昌":"https://nc.fang.lianjia.com/loupan/", "上海":"https://sh.fang.lianjia.com/loupan/",
+    "南通":"https://nt.fang.lianjia.com/loupan/","无锡":"https://wx.fang.lianjia.com/loupan/"}
 
 def query_houses_price(driver, city, date_):
     cnx = my.open_mysql_connection("127.0.0.1", 3306, "root", "1qaz2wsx")
